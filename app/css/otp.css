@@ -1,0 +1,227 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Segoe UI", Arial, sans-serif;
+}
+
+body {
+    min-height: 100vh;
+    background-color: #f5fafd;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+/* ── Card ────────────────────────────────────────────────────── */
+.otp-card {
+    position: relative;
+    width: 100%;
+    max-width: 520px;   /* slightly wider to comfortably hold 6 boxes */
+    background: #ffffff;
+    padding: 60px 40px 40px;
+    border-radius: 25px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    text-align: center;
+}
+
+/* ── Close button ────────────────────────────────────────────── */
+.close-btn {
+    position: absolute;
+    top: 25px;
+    right: 25px;
+    background: none;
+    border: none;
+    font-size: 20px;
+    color: #999;
+    cursor: pointer;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.close-btn:hover {
+    color: #7a7adb;
+}
+
+/* ── Lock icon ───────────────────────────────────────────────── */
+.icon-container {
+    margin-bottom: 20px;
+    font-size: 50px;
+}
+
+.lock-icon {
+    font-size: 50px;
+    color: #ffb800;
+}
+
+.lock-icon::before {
+    content: "🔒";
+}
+
+/* ── Heading & description ───────────────────────────────────── */
+h2 {
+    color: #333;
+    margin-bottom: 15px;
+    font-weight: 700;
+}
+
+.description {
+    color: #888;
+    font-size: 12px;
+    line-height: 1.5;
+    margin-bottom: 30px;
+}
+
+/* ── OTP input row ───────────────────────────────────────────── */
+.otp-inputs {
+    display: flex;
+    justify-content: center;
+    gap: 10px;          /* consistent gap for 6 boxes */
+    margin-bottom: 25px;
+    flex-wrap: nowrap;
+}
+
+/* ── Single OTP box ──────────────────────────────────────────── */
+.otp-inputs input {
+    width: 50px;
+    height: 60px;
+    border: 2px solid transparent;
+    border-radius: 14px;
+    text-align: center;
+    font-size: 22px;
+    font-weight: 700;
+    color: #7a7adb;
+
+    /* gradient border trick */
+    background-color: #f0f0f0;
+    background-image: linear-gradient(white, white),
+                      linear-gradient(to right, #C8E5E4, #E3E2F0, #ECDAEA, #EAC8DF, #DDF0EE);
+    background-origin: border-box;
+    background-clip: padding-box, border-box;
+
+    outline: none;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+
+    /* suppress browser autofill UI */
+    appearance: none;
+    -webkit-appearance: none;
+    box-shadow: none;
+    caret-color: #7a7adb;
+}
+
+/* Hide spin buttons on number/tel inputs */
+.otp-inputs input::-webkit-outer-spin-button,
+.otp-inputs input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.otp-inputs input[type=number] {
+    -moz-appearance: textfield; /* Firefox */
+}
+
+/* Focus state */
+.otp-inputs input:focus {
+    background-color: #ffffff;
+    transform: scale(1.07);
+    box-shadow: 0 0 0 3px rgba(122, 122, 219, 0.12);
+}
+
+/* Disabled state */
+.otp-inputs input:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+/* ── Suppress Chrome/Safari autofill yellow background ──────── */
+.otp-inputs input:-webkit-autofill,
+.otp-inputs input:-webkit-autofill:hover,
+.otp-inputs input:-webkit-autofill:focus {
+    -webkit-text-fill-color: #7a7adb;
+    /* Override the autofill background with an inset shadow */
+    -webkit-box-shadow: 0 0 0 1000px #ffffff inset;
+    box-shadow: 0 0 0 1000px #ffffff inset;
+    /* Keep the gradient border intact */
+    border: 2px solid transparent;
+    background-image: linear-gradient(white, white),
+                      linear-gradient(to right, #C8E5E4, #E3E2F0, #ECDAEA, #EAC8DF, #DDF0EE);
+    background-origin: border-box;
+    background-clip: padding-box, border-box;
+    /* Delay background-color transition so the override persists */
+    transition: background-color 9999s ease-in-out 0s;
+}
+
+/* ── Resend link ─────────────────────────────────────────────── */
+.resend-link {
+    display: inline-block;
+    margin-bottom: 25px;
+    color: #7a7adb !important;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: bold;
+    transition: 0.3s;
+    cursor: pointer;
+}
+
+.resend-link:hover {
+    color: #7a7adb;
+    text-decoration: underline;
+}
+
+/* ── Verify button ───────────────────────────────────────────── */
+.verify-btn {
+    width: 100%;
+    height: 50px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #7a7adb;
+    background: white;
+    cursor: pointer;
+    border: 2px solid transparent;
+    border-radius: 40px;
+
+    /* gradient border */
+    background-image: linear-gradient(white, white),
+                      linear-gradient(to right, #C8E5E4, #E3E2F0, #ECDAEA, #EAC8DF, #DDF0EE);
+    background-origin: border-box;
+    background-clip: padding-box, border-box;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+    margin-top: 15px;
+
+    appearance: none;
+    -webkit-appearance: none;
+}
+
+.verify-btn:hover:not(:disabled) {
+    transform: translateY(-2px);
+    opacity: 0.9;
+}
+
+.verify-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* ── Responsive: shrink boxes on very small screens ─────────── */
+@media (max-width: 380px) {
+    .otp-inputs {
+        gap: 7px;
+    }
+    .otp-inputs input {
+        width: 42px;
+        height: 52px;
+        font-size: 18px;
+        border-radius: 10px;
+    }
+    .otp-card {
+        padding: 50px 20px 30px;
+    }
+}

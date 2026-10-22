@@ -1,0 +1,328 @@
+/* ============================================================
+   chat.css — FOODTIME Support Chat Module
+   Colour system:
+     Customer / user messages  → orange  (#d4650f)
+     Admin / support messages  → blue    (#1d6fa8)
+     Auto-reply / bot          → purple  (#7c3aed tint)
+     System notices            → neutral grey italic
+   ============================================================ */
+
+/* ── Root variables ── */
+:root {
+    --primary:        #d4650f;
+    --primary-dark:   #b3540c;
+    --primary-light:  #f0874a;
+    --admin-blue:     #1d6fa8;
+    --admin-blue-dk:  #165d8e;
+    --admin-blue-lt:  #dbeafe;
+    --bot-purple:     #7c3aed;
+    --bot-purple-lt:  #ede9fe;
+    --bot-purple-bd:  #ddd6fe;
+    --system-bg:      #f3f4f6;
+    --system-text:    #6b7280;
+    --bg:             #f5f5f5;
+    --surface:        #ffffff;
+    --border:         #e0e0e0;
+    --text:           #222222;
+    --text-muted:     #777777;
+    --radius:         10px;
+    --shadow:         0 2px 12px rgba(0,0,0,.10);
+}
+
+/* ── Page wrapper ── */
+.chat-page {
+    min-height: 100vh;
+    background: var(--bg);
+    padding: 30px 15px 50px;
+    font-family: 'Segoe UI', sans-serif;
+    color: var(--text);
+}
+.chat-container { max-width: 1100px; margin: 0 auto; }
+.chat-page h2 {
+    font-size: 22px; font-weight: 700; color: var(--primary);
+    margin-bottom: 18px; display: flex; align-items: center; gap: 8px;
+}
+
+/* ── Conversation List ── */
+.conv-list {
+    background: var(--surface);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    overflow: hidden;
+    max-height: 640px;
+    overflow-y: auto;
+}
+.conv-list-header {
+    background: var(--primary); color: #fff;
+    padding: 14px 20px; font-weight: 700; font-size: 15px;
+    display: flex; align-items: center; gap: 8px;
+}
+.conv-item {
+    display: flex; align-items: flex-start; gap: 12px;
+    padding: 14px 20px; border-bottom: 1px solid var(--border);
+    text-decoration: none; color: var(--text); transition: background .15s; cursor: pointer;
+}
+.conv-item:hover  { background: #fef6f1; }
+.conv-item.active { background: #fde8d8; border-left: 4px solid var(--primary); }
+.conv-avatar {
+    width: 42px; height: 42px; border-radius: 50%;
+    background: var(--primary); color: #fff;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px; flex-shrink: 0;
+}
+.conv-meta { flex: 1; min-width: 0; }
+.conv-meta .conv-name  { font-weight: 700; font-size: 14px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.conv-meta .conv-subject { font-size: 12px; color: var(--text-muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.conv-meta .conv-time  { font-size: 11px; color: var(--text-muted); margin-top: 2px; }
+.badge-unread {
+    background: var(--primary); color: #fff; border-radius: 50%;
+    min-width: 20px; height: 20px; font-size: 11px; font-weight: 700;
+    display: inline-flex; align-items: center; justify-content: center; padding: 0 4px; flex-shrink: 0;
+}
+
+/* ── Status badges ── */
+.status-badge { display: inline-block; padding: 2px 8px; border-radius: 30px; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .5px; }
+.status-open     { background: #d1fae5; color: #065f46; }
+.status-pending  { background: #fef3c7; color: #92400e; }
+.status-resolved { background: #dbeafe; color: #1e40af; }
+.status-closed   { background: #f3f4f6; color: #6b7280; }
+
+/* ── Chat layout ── */
+.chat-layout { display: grid; grid-template-columns: 300px 1fr; gap: 20px; align-items: start; }
+@media (max-width: 700px) { .chat-layout { grid-template-columns: 1fr; } }
+
+/* ── Chat window ── */
+.chat-window {
+    background: var(--surface); border-radius: var(--radius); box-shadow: var(--shadow);
+    display: flex; flex-direction: column; height: 640px; overflow: hidden;
+}
+.chat-window-header {
+    background: var(--primary); color: #fff; padding: 14px 18px;
+    display: flex; align-items: center; gap: 10px;
+}
+.chat-window-header .hw-name { font-weight: 700; font-size: 15px; }
+.chat-window-header .hw-sub  { font-size: 12px; opacity: .85; }
+.chat-window-header .hw-icon { font-size: 22px; }
+
+/* ── Messages area ── */
+.chat-messages {
+    flex: 1; overflow-y: auto; padding: 18px 16px;
+    display: flex; flex-direction: column; gap: 4px; background: #fafafa;
+}
+.chat-messages::-webkit-scrollbar { width: 5px; }
+.chat-messages::-webkit-scrollbar-thumb { background: #d4d4d4; border-radius: 4px; }
+
+/* ── Message groups ── */
+.msg-group { display: flex; flex-direction: column; gap: 2px; margin-bottom: 8px; }
+.group-me     { align-items: flex-end; }
+.group-them   { align-items: flex-start; }
+.group-admin  { align-items: flex-start; }
+.group-system { align-items: center; }
+
+.msg-sender-name {
+    font-size: 11px; font-weight: 600; color: var(--text-muted);
+    padding: 0 12px; margin-bottom: 3px;
+}
+
+.msg-row { display: flex; align-items: flex-end; gap: 8px; max-width: 72%; }
+.group-me .msg-row    { flex-direction: row-reverse; }
+.group-admin .msg-row { flex-direction: row; }
+
+/* ── Avatars ── */
+.msg-av {
+    width: 28px; height: 28px; border-radius: 50%;
+    color: #fff; font-size: 11px; font-weight: 700;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0; margin-bottom: 2px;
+    background: #6b7280;  /* default grey */
+}
+.av-bot      { background: var(--bot-purple); }
+.av-admin    { background: var(--admin-blue); }
+.av-customer { background: var(--primary); }
+
+/* ── Bubble base ── */
+.msg-bubble {
+    padding: 9px 14px; border-radius: 18px;
+    font-size: 14px; line-height: 1.5; word-break: break-word;
+}
+
+/* ═══════════════════════════════════════════════════════
+   COLOUR RULES  — the single source of truth
+   bubble-customer  : user/customer sent → right, ORANGE
+   bubble-admin     : admin sent (seen by customer) → left, BLUE
+   bubble-admin-me  : admin's own message on admin page → right, BLUE
+   bubble-customer-admin : customer msg seen by admin → left, grey
+   bubble-auto      : auto-reply bot → left, PURPLE tint
+   bubble-system    : system notice → centred, grey italic
+   bubble-self      : fallback "own" bubble (JS) — inherits page context
+   ═══════════════════════════════════════════════════════ */
+
+/* Customer messages — ORANGE (right) */
+.group-me .msg-bubble,
+.bubble-customer {
+    background: var(--primary);
+    color: #fff;
+    border-bottom-right-radius: 5px;
+}
+
+/* Admin messages seen by customer — BLUE (left) */
+.bubble-admin {
+    background: var(--admin-blue);
+    color: #fff;
+    border-bottom-left-radius: 5px;
+}
+.group-admin .msg-bubble { /* alias */
+    background: var(--admin-blue);
+    color: #fff;
+    border-bottom-left-radius: 5px;
+}
+
+/* Admin's OWN sent messages on admin page — BLUE (right) */
+.bubble-admin-me {
+    background: var(--admin-blue);
+    color: #fff;
+    border-bottom-right-radius: 5px;
+}
+
+/* Customer messages seen by admin — GREY (left) */
+.bubble-customer-admin {
+    background: #e4e6eb;
+    color: #1c1e21;
+    border-bottom-left-radius: 5px;
+}
+.group-them .msg-bubble {
+    background: #e4e6eb;
+    color: #1c1e21;
+    border-bottom-left-radius: 5px;
+}
+
+/* Auto-reply / bot — PURPLE tint (left) */
+.bubble-auto {
+    background: var(--bot-purple-lt) !important;
+    color: #4c1d95 !important;
+    border: 1px solid var(--bot-purple-bd) !important;
+    border-bottom-left-radius: 5px;
+}
+
+/* System notice — centred grey italic */
+.bubble-system {
+    background: var(--system-bg) !important;
+    color: var(--system-text) !important;
+    font-size: 11px !important;
+    font-style: italic;
+    border: none !important;
+    border-radius: 20px;
+    padding: 4px 14px !important;
+    max-width: 90%;
+    text-align: center;
+}
+
+/* JS bubble-self fallback — same as group-me (orange on customer, blue on admin) */
+.bubble-self {
+    background: var(--primary);
+    color: #fff;
+    border-bottom-right-radius: 5px;
+}
+
+/* Time labels */
+.msg-time-label { font-size: 10px; color: var(--text-muted); padding: 0 4px; margin-top: 2px; }
+.group-me    .msg-time-label { text-align: right; }
+.group-them  .msg-time-label { text-align: left; }
+.group-admin .msg-time-label { text-align: left; }
+
+/* Date separator */
+.date-sep {
+    display: flex; align-items: center; gap: 12px;
+    padding: 8px 20px; color: var(--text-muted); font-size: 11px;
+}
+.date-sep::before, .date-sep::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+
+/* ── Input area ── */
+.chat-input-area {
+    border-top: 1px solid var(--border); padding: 12px 14px;
+    background: var(--surface); display: flex; align-items: center; gap: 10px;
+}
+.chat-input-area textarea {
+    flex: 1; resize: none; border: 1px solid var(--border); border-radius: 22px;
+    padding: 10px 16px; font-size: 14px; font-family: inherit; outline: none;
+    max-height: 100px; overflow-y: auto; line-height: 1.4; transition: border .2s;
+}
+.chat-input-area textarea:focus { border-color: var(--primary); }
+
+.chat-input-wrap {
+    border-top: 1px solid var(--border); padding: 12px 14px;
+    background: var(--surface); display: flex; align-items: flex-end; gap: 10px;
+}
+.input-box-wrap {
+    flex: 1; background: #f0f2f5; border-radius: 22px;
+    display: flex; align-items: flex-end; padding: 8px 14px; gap: 10px;
+}
+#msg-input {
+    flex: 1; background: none; border: none; outline: none;
+    font-size: 15px; font-family: inherit; resize: none;
+    max-height: 120px; overflow-y: auto; line-height: 1.4;
+}
+#msg-input::placeholder { color: var(--text-muted); }
+
+.chat-send-btn {
+    width: 42px; height: 42px; border: none; border-radius: 50%;
+    background: var(--primary); color: #fff; font-size: 16px; cursor: pointer;
+    display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+    transition: background .2s, transform .1s;
+}
+.chat-send-btn:hover  { background: var(--primary-dark); }
+.chat-send-btn:active { transform: scale(.92); }
+.chat-send-btn:disabled { background: #ccc; cursor: not-allowed; }
+
+.closed-bar {
+    background: var(--surface); border-top: 1px solid var(--border);
+    padding: 14px 20px; text-align: center; color: var(--text-muted);
+    font-size: 13px; display: flex; align-items: center; justify-content: center; gap: 10px;
+}
+
+/* ── Empty state ── */
+.chat-empty {
+    flex: 1; display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    color: var(--text-muted); gap: 10px; font-size: 14px;
+}
+.chat-empty i { font-size: 40px; opacity: .4; }
+
+/* ── Alert ── */
+.chat-alert {
+    padding: 10px 18px; border-radius: 9px; font-size: 13px; font-weight: 600;
+    display: flex; align-items: center; gap: 8px; box-shadow: 0 4px 16px rgba(0,0,0,.15);
+}
+.chat-alert.success { background: #d1fae5; color: #065f46; }
+.chat-alert.error   { background: #fee2e2; color: #991b1b; }
+#chat-alert-box { position: fixed; bottom: 80px; left: 50%; transform: translateX(-50%); z-index: 9999; }
+
+/* ── Misc ── */
+.btn-close-conv {
+    background: #fee2e2; color: #991b1b; border: none; border-radius: 6px;
+    padding: 5px 12px; font-size: 12px; font-weight: 700; cursor: pointer;
+    margin-left: auto; transition: background .2s;
+}
+.btn-close-conv:hover { background: #fca5a5; }
+.no-conv-msg { text-align: center; padding: 40px 20px; color: var(--text-muted); font-size: 14px; }
+.no-conv-msg i { font-size: 36px; display: block; margin-bottom: 10px; opacity: .4; }
+.chat-single { max-width: 700px; margin: 0 auto; }
+
+/* ── Dark-theme admin page overrides ──
+   On admin_chat.php the page uses CSS variables from admin.css (dark).
+   Override bubble colours for dark background readability. ── */
+body.admin-chat-page .bubble-admin-me {
+    background: #1d6fa8;
+    color: #fff;
+}
+body.admin-chat-page .bubble-customer-admin,
+body.admin-chat-page .group-them .msg-bubble {
+    background: #2c2d31;
+    color: #f5f5f5;
+}
+body.admin-chat-page .bubble-system {
+    background: transparent !important;
+    color: #9a9ca5 !important;
+}
+body.admin-chat-page .msg-sender-name { color: #9a9ca5; }
+body.admin-chat-page .msg-time-label  { color: #9a9ca5; }

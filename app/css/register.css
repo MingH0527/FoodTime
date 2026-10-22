@@ -1,0 +1,546 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Segoe UI", Arial, sans-serif;
+}
+
+body {
+    min-height: 100vh;
+    background-color: #f5fafd; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px; 
+}
+
+
+.register-card{
+    position: relative; 
+    width: 100%;
+    max-width: 480px; 
+    background: #ffffff;
+    padding: 60px 40px 40px;
+    border-radius: 25px; 
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    text-align: center;
+}
+
+h2 {
+    margin-top: 10px;
+    margin-bottom: 30px;
+    clear: both;
+}
+
+
+input[type="text"],
+input[type="password"],
+input[type="email"],
+input[type="tel"] {
+    width: 100%;
+    padding: 15px 25px;
+    border: none;
+    border-radius: 35px; 
+    background-color: #f1f1f1; 
+    font-size: 14px;
+    outline: none;
+    margin-bottom: 5px;
+    transition: border 0.3s;
+}
+
+input[type="text"]:invalid,
+input[type="email"]:invalid,
+input[type="tel"]:invalid {
+    border: 2px solid transparent;
+}
+
+input[type="text"].error,
+input[type="email"].error,
+input[type="tel"].error {
+    border: 2px solid #e74c3c !important;
+    border-radius: 35px;
+}
+
+/* Phone input wrapper with fixed country code */
+.phone-input-wrapper {
+    display: flex;
+    align-items: center;
+    background-color: #f1f1f1;
+    border-radius: 35px;
+    padding: 0;
+    position: relative;
+    border: 2px solid transparent;
+    transition: border 0.3s;
+}
+
+.phone-input-wrapper.error {
+    border: 2px solid #e74c3c !important;
+}
+
+.phone-input-wrapper .country-code {
+    padding-left: 25px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #333;
+    white-space: nowrap;
+    user-select: none;
+    font-family: "Segoe UI Emoji", "Apple Color Emoji", "Noto Color Emoji", "Segoe UI", Arial, sans-serif;
+}
+.phone-input-wrapper input[type="tel"] {
+    background: transparent !important;
+    padding: 15px 25px 15px 8px !important;
+    flex: 1;
+    margin-bottom: 0 !important;
+}
+
+/* Error message styling */
+.error-message {
+    display: block;
+    color: #e74c3c;
+    font-size: 12px;
+    margin-top: 5px;
+    margin-left: 15px;
+    font-weight: 500;
+}
+
+
+
+.input-field {
+    text-align: left;    
+    margin-bottom: 20px; 
+    width: 100%;
+    position: relative;
+}
+
+.input-field label {
+    display: block;
+    margin-bottom: 8px; 
+    margin-left: 15px;   
+    font-size: 14px;
+    font-weight: 600;
+    color: #333;         
+}
+
+
+.gradient-btn, #next-button {
+    width: 100%;
+    height: 50px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #7a7adb;
+    background: white;
+    cursor: pointer;
+    border: 2px solid transparent; 
+    border-radius: 40px;
+    background-image: linear-gradient(white, white), 
+                      linear-gradient(to right, #C8E5E4, #E3E2F0, #ECDAEA, #EAC8DF, #DDF0EE); 
+    background-origin: border-box;
+    background-clip: padding-box, border-box; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.3s;
+    margin-top: 15px;
+}
+
+.gradient-btn:hover {
+    transform: translateY(-2px);
+    opacity: 0.9;
+}
+
+
+.back-home {
+    position: absolute;
+    top: 25px;   
+    left: 25px;  
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 600;
+    color: #999;
+}
+
+.back-home:hover {
+    color: #7a7adb;
+}
+
+
+.radio-group {
+    display: flex;
+    gap: 20px;
+    padding-left: 15px;
+    margin-top: 5px;
+}
+
+.radio-group label {
+    font-size: 14px;
+    color: #666;
+    cursor: pointer;
+}
+
+.form-part {
+    margin-bottom: 20px;
+}
+
+.back{
+    position: absolute;
+    top: 25px;    
+    left: 25px;  
+    z-index: 10;  
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 600;
+    color: #999;
+}
+
+.back:hover {
+    color: #7a7adb;
+}
+
+
+/* Gender selection area container */
+.gender-selection-wrapper {
+    text-align: left;
+    margin-bottom: 25px;
+    padding-left: 15px;
+    border: 2px solid transparent;
+    border-radius: 12px;
+    padding: 10px;
+    transition: 0.3s;
+}
+
+.gender-selection-wrapper.error {
+    border: 2px solid #ff4d4d;
+}
+
+.gender-title {
+    display: block;
+    font-size: 14px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 12px;
+}
+
+/* Options displayed horizontally */
+.gender-options {
+    display: flex;
+    gap: 30px; /* Gap between the two options */
+}
+
+/* Custom radio button container */
+.custom-radio {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    font-size: 14px;
+    color: #666;
+    position: relative;
+    user-select: none;
+}
+
+/* Hide native input */
+.custom-radio input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+}
+
+/* Outer circle when not selected */
+.radio-dot {
+    height: 18px;
+    width: 18px;
+    background-color: #fff;
+    border: 2px solid #ddd; /* Default gray border */
+    border-radius: 50%;
+    margin-right: 8px;
+    display: inline-block;
+    position: relative;
+    transition: 0.2s;
+}
+
+/* Outer circle changes color when selected (blue color) */
+.custom-radio input:checked ~ .radio-dot {
+    border-color: #3a7bd5; 
+}
+
+/* Inner small circle when selected */
+.radio-dot:after {
+    content: "";
+    position: absolute;
+    display: none;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #3a7bd5; /* Inner circle color */
+}
+
+/* Display inner circle when selected */
+.custom-radio input:checked ~ .radio-dot:after {
+    display: block;
+}
+
+/* Darken text when selected */
+.custom-radio input:checked ~ .gender-text {
+    color: #333;
+    font-weight: 600;
+}
+
+
+.radio-checkmark {
+    position: absolute;
+    left: 0;
+    height: 18px;
+    width: 18px;
+    background-color: #fff;
+    border: 2px solid #E3E2F0;
+    border-radius: 50%; 
+}
+
+
+.custom-radio-container input:checked ~ .radio-checkmark {
+    background: linear-gradient(to right, #C8E5E4, #E3E2F0, #ECDAEA, #EAC8DF, #DDF0EE);
+    border: none;
+}
+
+
+.radio-checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+    left: 6px;
+    top: 3px;
+    width: 3px;
+    height: 7px;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+}
+
+.custom-radio-container input:checked ~ .radio-checkmark:after {
+    display: block;
+}
+
+.next-button{
+    width: 100%;
+    height: 50px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #7a7adb;
+    background: white;
+    cursor: pointer;
+    border: 2px solid transparent; 
+    border-radius: 40px;
+    background-image: linear-gradient(white, white), 
+                      linear-gradient(to right, #C8E5E4, #E3E2F0, #ECDAEA, #EAC8DF, #DDF0EE); 
+    background-origin: border-box;
+    background-clip: padding-box, border-box; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.3s;
+    margin-top: 10px;
+}
+.next-button:hover {
+    transform: translateY(-2px);
+    opacity: 0.9;
+}
+
+
+.form-part {
+    padding-top: 20px;
+}
+
+
+.form-part.active {
+    display: block !important;
+    animation: slideIn 0.3s ease-out;
+}
+
+
+.button-group {
+    display: flex;
+    gap: 15px;
+    margin-top: 15px;
+}
+
+
+@keyframes slideIn {
+    from { opacity: 0; transform: translateX(20px); }
+    to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-10px); }
+    75% { transform: translateX(10px); }
+}
+
+
+.header-spacing {
+    height: 40px; 
+}
+
+
+.form-part h2 {
+    margin-top: 10px;
+    margin-bottom: 30px;
+}
+
+
+.back-button-btn-back-step{
+    width: 100%;
+    height: 50px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #7a7adb;
+    background: white;
+    cursor: pointer;
+    border: 2px solid transparent; 
+    border-radius: 40px;
+    background-image: linear-gradient(white, white), 
+                      linear-gradient(to right, #C8E5E4, #E3E2F0, #ECDAEA, #EAC8DF, #DDF0EE); 
+    background-origin: border-box;
+    background-clip: padding-box, border-box; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.3s;
+    margin-top: 10px;
+}
+
+.back-button-btn-back-step:hover {
+    transform: translateY(-2px);
+    opacity: 0.9;
+}
+
+/* Password wrapper for positioning toggle emoji */
+.password-wrapper {
+    position: relative;
+    width: 100%;
+}
+
+/* Input box needs to reserve space on the right for the emoji */
+.password-wrapper input {
+    width: 100%;
+    padding-right: 50px !important;
+}
+
+/* Position emoji absolutely to the right inside the input box */
+.toggle-password {
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    font-size: 20px;
+    z-index: 10;
+    user-select: none;
+}
+
+/* Validation message container */
+.requirements-container {
+    margin-top: 10px;
+    padding: 15px;
+    background: #f8f9fa;
+    border-radius: 15px;
+    text-align: left;
+}
+
+.requirements-container p {
+    font-size: 13px;
+    margin: 5px 0;
+    transition: 0.3s;
+}
+
+.valid { color: #2ecc71; font-weight: bold; }
+.invalid { color: #e74c3c; }
+
+/* Part 2: Location Section */
+.location-wrapper {
+    position: relative;
+    width: 100%;
+}
+
+.search-container {
+    display: flex;
+    align-items: center;
+    background: #ffffff;
+    border: 2px solid #E3E2F0;
+    border-radius: 30px;
+    padding: 5px 15px;
+    margin-bottom: 15px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    transition: 0.3s;
+}
+
+.search-container:focus-within {
+    border-color: #7a7adb;
+    box-shadow: 0 4px 15px rgba(122, 122, 219, 0.2);
+}
+
+.search-container input {
+    flex: 1;
+    border: none !important;
+    background: transparent !important;
+    padding: 12px !important;
+    font-size: 14px !important;
+    outline: none !important;
+    margin-bottom: 0 !important;
+}
+
+/* Circular locate me button */
+#locate-me-btn {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    border: 1px solid #E3E2F0;
+    background: white;
+    font-size: 20px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+    transition: 0.3s;
+    flex-shrink: 0;
+}
+
+#locate-me-btn:hover {
+    transform: scale(1.1);
+    background-color: #f8f8ff;
+}
+
+/* Map styling */
+#map {
+    height: 300px;
+    width: 100%;
+    border-radius: 20px;
+    border: 1px solid #E3E2F0;
+    margin-bottom: 10px;
+}
+
+/* Error text styling */
+.error-text {
+    display: none;
+    font-size: 12px;
+    color: #ff4d4d;
+    margin-top: 5px;
+    text-align: left;
+    padding-left: 15px;
+    font-weight: bold;
+    animation: fadeIn 0.3s;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* Disabled button styling */
+#submit-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    filter: grayscale(1);
+}

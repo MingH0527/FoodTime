@@ -1,0 +1,197 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Segoe UI", Arial, sans-serif;
+}
+
+body {
+    min-height: 100vh;
+    background-color: #f5fafd; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.login-card {
+    position: relative; 
+    width: 100%;
+    max-width: 420px;
+    background: #ffffff;
+    padding: 60px 40px 40px;
+    border-radius: 25px; 
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    text-align: center;
+}
+
+h2 {
+    margin-bottom: 30px;
+    font-size: 30px;
+    color: #333;
+    font-weight: bold;
+}
+
+
+input[type="text"],
+input[type="password"] {
+    width: 100%;
+    padding: 15px 25px;
+    border: none;
+    border-radius: 35px; 
+    background-color: #f1f1f1; 
+    font-size: 14px;
+    outline: none;
+}
+
+
+.auth-options {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 5px 5px 25px;
+}
+
+.extra-links {
+    margin-top: 20px;
+    font-size: 14px;
+    color: #666; 
+}
+
+.highlight-link {
+    color: #7a7adb !important; 
+    text-decoration: none;      
+    font-weight: bold;          
+    cursor: pointer;
+}
+
+.highlight-link:hover {
+    text-decoration: underline; 
+}
+
+
+.remember-container {
+    display: flex;
+    align-items: center;
+    position: relative;
+    padding-left: 28px;
+    cursor: pointer;
+    font-size: 14px;
+    color: #888;
+}
+
+.remember-container input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.checkmark {
+    position: absolute;
+    left: 0;
+    height: 18px;
+    width: 18px;
+    background-color: #fff;
+    border: 2px solid #E3E2F0;
+    border-radius: 50%; 
+}
+
+
+.remember-container input:checked ~ .checkmark {
+    background: linear-gradient(to right, #C8E5E4, #E3E2F0, #ECDAEA, #EAC8DF, #DDF0EE);
+    border: none;
+}
+
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+    left: 6px;
+    top: 3px;
+    width: 3px;
+    height: 7px;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+}
+
+.remember-container input:checked ~ .checkmark:after {
+    display: block;
+}
+
+
+.gradient-btn {
+    width: 100%;
+    height: 50px; 
+    font-size: 18px;
+    font-weight: bold;
+    color: #7a7adb;
+    background: white;
+    cursor: pointer;
+    border: 2px solid transparent; 
+    border-radius: 40px;
+    background-image: linear-gradient(white, white), 
+                      linear-gradient(to right, #C8E5E4, #E3E2F0, #ECDAEA, #EAC8DF, #DDF0EE); 
+    background-origin: border-box;
+    background-clip: padding-box, border-box; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.3s;
+    margin-top: 10px;
+}
+.gradient-btn:hover {
+    transform: translateY(-2px);
+    opacity: 0.9;
+}
+
+.extra-links {
+    margin-top: 20px;
+}
+.back-home {
+    position: absolute;
+    top: 20px;   
+    left: 20px;  
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 600;
+    color: #999;
+}
+
+.back-home:hover {
+    color: #7a7adb;
+}
+.input-group label {
+    display: block;
+    margin-left: 15px; 
+    margin-bottom: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #333;
+}
+.input-field {
+    text-align: left;    
+    margin-bottom: 20px; 
+    width: 100%;
+}
+.input-field label {
+    display: block;
+    margin-bottom: 8px; 
+    margin-left: 15px;   
+    font-size: 14px;
+    font-weight: 600;
+    color: #333;         
+}
+.password-wrapper {
+    position: relative;
+    width: 100%;
+}
+.login_password {
+    position: absolute;
+    right: 20px;   
+    top: 50%;      
+    transform: translateY(-50%); 
+    cursor: pointer;
+    font-size: 18px;
+    color: #999;
+    z-index: 10; 
+}
